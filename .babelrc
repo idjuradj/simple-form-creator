@@ -1,0 +1,22 @@
+{
+  "presets": ["babel-preset-es2015"],
+  "plugins": [
+    ["transform-replace-object-assign", "simple-assign"],
+    "transform-dev-warning"
+  ],
+  "env": {
+    "test": {
+      "sourceMaps": "both"
+    },
+    "docs-production": {
+      "plugins": [
+        ["transform-replace-object-assign", "simple-assign"]
+      ]
+    },
+    "release": {
+      "plugins": [
+        "transform-runtime"
+      ]
+    }
+  }
+}
