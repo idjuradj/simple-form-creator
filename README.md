@@ -16,7 +16,7 @@ npm install simple-form-creator
 Include the module in your script.
 
 ```sh
-import SimpleFormCreator, { SimpleFormCreator } from 'simple-form-creator';
+import SimpleFormCreator, { SimpleFormCreatorWrapper } from 'simple-form-creator';
 ```
 
 Create an object containing the form's settings:
