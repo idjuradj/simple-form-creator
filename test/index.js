@@ -1,13 +1,17 @@
-var assert = require('assert');
-describe('Array', function () {
-	describe('#indexOf()', function () {
-		it('should return -1 when the value is not present', function () {
-			assert.equal(-1, [1, 2, 3].indexOf(4));
-		});
+import assert from 'assert';
+import jsdom from 'mocha-jsdom';
+import { SimpleFormCreatorWrapper } from '../src/index.js';
+
+describe('Simple Form Creator', function () {
+	jsdom();
+
+	it('should create an expected DOM node', function () {
+		const simpleform = SimpleFormCreatorWrapper({ 'formId': 'randomId' });
+		assert.equal((simpleform.create()).outerHTML, '<form id="randomId" action="" method="post"></form>');
 	});
-	describe('#length', function () {
-		it('Should return 3 when array length is 3', function () {
-			assert.equal(3, [1, 2, 3].length);
-		});
+
+	it('should return a string', function () {
+		const simpleform = SimpleFormCreatorWrapper({});
+		assert.equal(typeof simpleform.getRandomFormId(), 'string');
 	});
 });
