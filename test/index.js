@@ -1,17 +1,27 @@
 import assert from 'assert';
 import jsdom from 'mocha-jsdom';
-import { SimpleFormCreatorWrapper } from '../src/index.js';
+import simpleFormCreator from '../src/index.js';
 
 describe('Simple Form Creator', function () {
 	jsdom();
 
 	it('should create an expected DOM node', function () {
-		const simpleform = SimpleFormCreatorWrapper({ 'formId': 'randomId' });
-		assert.equal((simpleform.create()).outerHTML, '<form id="randomId" action="" method="post"></form>');
+		const simpleform = simpleFormCreator({ 'formId': 'randomId' });
+		assert.equal(simpleform.outerHTML, '<form id="randomId" action="" method="post"></form>');
 	});
 
-	it('should return a string', function () {
-		const simpleform = SimpleFormCreatorWrapper({});
-		assert.equal(typeof simpleform.getRandomFormId(), 'string');
+	it('should have an id attribute', function () {
+		const simpleform = simpleFormCreator({});
+		assert.equal(typeof simpleform.getAttribute('id'), 'string');
+	});
+
+	it('should have an action attribute', function () {
+		const simpleform = simpleFormCreator({});
+		assert.equal(typeof simpleform.getAttribute('action'), 'string');
+	});
+
+	it('should have a method attribute', function () {
+		const simpleform = simpleFormCreator({});
+		assert.equal(typeof simpleform.getAttribute('method'), 'string');
 	});
 });
