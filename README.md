@@ -16,7 +16,7 @@ npm install simple-form-creator
 Include the module in your script.
 
 ```sh
-import SimpleFormCreator, { SimpleFormCreatorWrapper } from 'simple-form-creator';
+import simpleFormCreator from 'simple-form-creator';
 ```
 
 Create an object containing the form's settings:
@@ -40,11 +40,7 @@ const formObject = {
 ```
 Now create the form
 ```sh
-const form = new SimpleFormCreator.SimpleFormCreator(formObject);
-```
-or, if you prefer not to use the new operant, use
-```sh
-const form = SimpleFormCreatorWrapper(formObject);
+const form = simpleFormCreator(formObject);
 ```
 
 Your brand new form is set up. Now you can use it make form post (or get) submits, 
@@ -65,12 +61,9 @@ form.submit();
 
 ### Scripts
 - Install `npm install`
-- Start developing `npm start`
 - Lint `npm run lint`
 - Test `npm test`
 - Build `npm run build`
-- Publish `npm run publish`
-- Static server `npm run static-server`
 
 ### Coding style
 Please follow the coding style of the current code base.
