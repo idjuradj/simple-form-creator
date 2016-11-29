@@ -2,7 +2,8 @@
   "presets": ["babel-preset-es2015"],
   "plugins": [
     ["transform-replace-object-assign", "simple-assign"],
-    "transform-dev-warning"
+    "transform-dev-warning",
+    "add-module-exports"
   ],
   "env": {
     "test": {
