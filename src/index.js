@@ -15,14 +15,15 @@ class SimpleFormCreator {
 		this.options = options;
 	}
 
+
 	/**
 	 *
-	 * @method getRandomFormId
+	 * @method createRandomFormId
 	 * @description Creates a pseudo random form id
 	 *
 	 * @returns {string} field - populated field
 	 */
-	getRandomFormId() {
+	createRandomFormId() {
 		const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 		let formId = '';
 
@@ -66,7 +67,7 @@ class SimpleFormCreator {
 			formDataValue.forEach((formDataValueItem, index) => {
 				this.populateForm(form, `${formDataKey}[${index}]`, formDataValueItem);
 			});
-		} else if (typeof formDataKey === 'object') {
+		} else if (typeof formDataValue === 'object') {
 			forOwn(formDataValue, (formDataValueItem, key) => {
 				this.populateForm(form, `${formDataKey}[${key}]`, formDataValueItem);
 			});
@@ -87,7 +88,7 @@ class SimpleFormCreator {
 
 		const method = this.options.method || 'post';
 		const action = this.options.action || '';
-		const formId = this.options.formId || this.getRandomFormId();
+		const formId = this.options.formId || this.createRandomFormId();
 
 		const formData = this.options.formData || {};
 
@@ -95,7 +96,6 @@ class SimpleFormCreator {
 		form.setAttribute('action', action);
 		form.setAttribute('method', method);
 
-		// iterate through every propery of the formData object
 		forOwn(formData, (formDataValue, formDataKey) => {
 			this.populateForm(form, formDataKey, formDataValue);
 		});
@@ -105,10 +105,10 @@ class SimpleFormCreator {
 
 }
 
-const SimpleFormCreatorWrapper = (options) => {
-	return new SimpleFormCreator(options);
+const simpleFormCreator = (options) => {
+	const instance = new SimpleFormCreator(options);
+	return instance.create();
 };
 
-export default SimpleFormCreator;
-export { SimpleFormCreatorWrapper };
+export default simpleFormCreator;
 
