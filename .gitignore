@@ -1,0 +1,9 @@
+### IDE
+/.idea
+
+### OS
+.DS_Store
+
+### BUILD
+/node_modules
+/build
