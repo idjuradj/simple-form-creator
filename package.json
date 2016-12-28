@@ -1,6 +1,6 @@
 {
   "name": "simple-form-creator",
-  "version": "0.2.0",
+  "version": "0.4.0",
   "description": "Creates a DOM form from your options object using vanilla js",
   "main": "index.js",
   "scripts": {
