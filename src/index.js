@@ -54,6 +54,20 @@ class SimpleFormCreator {
 
 	/**
 	 *
+	 * @method createSubmitButton
+	 * @description creates a submit button, because the form needs one to work :)
+	 *
+	 * @returns {Object} submitButton - submit button
+	 */
+	createSubmitButton() {
+		const submitButton = document.createElement('input');
+		submitButton.setAttribute('type', 'submit');
+
+		return submitButton;
+	}
+
+	/**
+	 *
 	 * @method populateForm
 	 * @description populates the form with contect from this.options.formData
 	 *
@@ -78,6 +92,26 @@ class SimpleFormCreator {
 
 	/**
 	 *
+	 * @method populateForm
+	 * @description populates the form with contect from this.options.formData
+	 *
+	 * @param {Object} form - form object to be populated
+	 * @returns {Object} form - populated form
+	 */
+	setAttributes(form) {
+		const method = this.options.method || 'post';
+		const action = this.options.action || '';
+		const formId = this.options.formId || this.createRandomFormId();
+		const style = this.options.style || '';
+
+		form.setAttribute('id', formId);
+		form.setAttribute('action', action);
+		form.setAttribute('method', method);
+		form.setAttribute('style', style);
+	}
+
+	/**
+	 *
 	 * @method create
 	 * @description Creates the form
 	 *
@@ -86,19 +120,15 @@ class SimpleFormCreator {
 	create() {
 		const form = document.createElement('form');
 
-		const method = this.options.method || 'post';
-		const action = this.options.action || '';
-		const formId = this.options.formId || this.createRandomFormId();
-
 		const formData = this.options.formData || {};
 
-		form.setAttribute('id', formId);
-		form.setAttribute('action', action);
-		form.setAttribute('method', method);
+		this.setAttributes(form);
 
 		forOwn(formData, (formDataValue, formDataKey) => {
 			this.populateForm(form, formDataKey, formDataValue);
 		});
+
+		form.appendChild(this.createSubmitButton());
 
 		return form;
 	}
