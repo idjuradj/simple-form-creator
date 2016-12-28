@@ -7,7 +7,10 @@ describe('Simple Form Creator', function () {
 
 	it('should create an expected DOM node', function () {
 		const simpleform = simpleFormCreator({ 'formId': 'randomId' });
-		assert.equal(simpleform.outerHTML, '<form id="randomId" action="" method="post"></form>');
+		assert.equal(
+			simpleform.outerHTML,
+			'<form id="randomId" action="" method="post" style=""><input type="submit"></form>'
+		);
 	});
 
 	it('should have an id attribute', function () {
